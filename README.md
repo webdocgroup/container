@@ -1,5 +1,7 @@
 # Container
 
+<img width="1280" height="640" alt="Webdoc container" src="https://github.com/user-attachments/assets/b7a5038a-0a31-4342-956a-7ccd8ab13b50" />
+
 The Webdoc service container is a simple tool for managing class dependencies and performing dependency injection.
 
 ## Installation
