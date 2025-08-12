@@ -1,6 +1,6 @@
 {
   "name": "@webdocgroup/container",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A lightweight, type-safe dependency injection container for TypeScript.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
