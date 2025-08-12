@@ -1,5 +1,7 @@
 # Container
 
+The Webdoc service container is a simple tool for managing class dependencies and performing dependency injection.
+
 ## Installation
 
 ```bash
@@ -8,7 +10,9 @@ npm install @webdocgroup/container
 
 ## Usage
 
-### Bind
+### Simple Bindings
+
+Use `bind` to register a factory function. The factory is called every time you resolve the key, returning a new instance each time.
 
 ```ts
 type Application = {
@@ -19,16 +23,17 @@ type Application = {
 
 const container = new Container<Application>();
 
-// Bind a factory that instantiates your create user handler
-// the factory will be run each time you resolve an instance
-container.bind('command.createUser', () => {
-    return new CreateUserHandler();
-});
+// Register a factory for 'command.createUser'.
+// Each call to resolve will create a new instance.
+container.bind('command.createUser', () => new CreateUserHandler());
 
+// Resolving returns a new instance every time.
 const handler = container.resolve('command.createUser');
 ```
 
-### Bind Singleton
+### Binding Singletons
+
+Use `singleton` to register a factory that is only called once. All future resolves return the same instance.
 
 ```ts
 type Application = {
@@ -39,17 +44,16 @@ type Application = {
 
 const container = new Container<Application>();
 
-// Bind a factory that instantiates your create user handler
-// the factory will only be invoked once and you will be given
-// the same instance on each resolve
-container.singleton('userRepository', () => {
-    return new UserRepository();
-});
+// Register a singleton factory for 'userRepository'.
+// Only one instance will ever be created and reused.
+container.singleton('userRepository', () => new UserRepository());
 
-// You can resolve other bound services within factories
-container.bind('query.getUser', () => {
-    return new GetUserHandler({
-        realm: container.resolve('userRepository'),
-    });
-});
+// Factories can resolve other dependencies from the container.
+container.bind(
+    'query.getUser',
+    () =>
+        new GetUserHandler({
+            userRepository: container.resolve('userRepository'),
+        })
+);
 ```
