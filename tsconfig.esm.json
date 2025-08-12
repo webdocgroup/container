@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.build.json",
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "outDir": "dist/esm",
+        "target": "ES2024",
+        "allowSyntheticDefaultImports": true
+    }
+}
