@@ -38,11 +38,13 @@
     "url": "git+https://github.com/webdocgroup/container.git"
   },
   "keywords": [
-    "Typescript",
-    "Middleware",
-    "Data Processing",
-    "Node",
-    "Laravel"
+    "dependency-injection",
+    "di",
+    "container",
+    "typescript",
+    "type-safe",
+    "inversion-of-control",
+    "ioc"
   ],
   "author": "Webdoc",
   "license": "MIT",
